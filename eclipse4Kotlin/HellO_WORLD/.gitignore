@@ -1,0 +1,12 @@
+bin/
+build/classes/
+build/distributions/
+build/kotlin/
+build/kotlin-build/
+build/kotlin-classes/
+build/scripts/
+build/tmp/
+./.gradle/
+.project
+.classpath
+

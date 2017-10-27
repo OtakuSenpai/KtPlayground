@@ -1,0 +1,34 @@
+buildscript {
+    ext.kotlin_version = '1.1.51'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+apply plugin: 'kotlin'
+apply plugin: 'application'
+
+mainClassName = 'otakusenpai.calculator.MainKt'
+
+defaultTasks 'run'
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+
+jar {
+   manifest {
+     attributes 'Main-Class': 'otakusenpai.calculator.MainKt'
+   }
+
+   from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }  
+}

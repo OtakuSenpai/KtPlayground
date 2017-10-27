@@ -1,0 +1,39 @@
+buildscript {
+  ext.kotlin_version = '1.1.51'
+  repositories {
+    maven { 
+      url "https://dl.bintray.com/kotlin/kotlin-dev"
+    }
+    mavenCentral()
+  }
+
+  dependencies {
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+  }
+}
+
+apply plugin: 'kotlin'
+apply plugin: 'application'
+
+mainClassName = 'helloworld.HelloKt'
+
+jar {
+   manifest {
+       attributes 'Class-Path': '/libs/hello-world.jar'
+       attributes 'Main-Class': 'helloworld.HelloKt'
+   }
+
+   from { 
+       configurations.compile.collect { it.isDirectory() ? it :
+zipTree(it) }
+   } 
+}
+
+repositories {
+    maven { url "https://dl.bintray.com/kotlin/kotlin-dev" }
+    mavenCentral()
+}
+
+dependencies {
+   compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
